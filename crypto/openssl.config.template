@@ -12,9 +12,10 @@ basicConstraints = CA:true
 1.3.6.1.4.1.294.1.9=ASN1:SEQUENCE:ext_boot_info
 
 [ext_boot_info]
-extImgSize=INTEGER:<R_BOOT_SIZE>
-numComp=INTEGER:1
+extImgSize=INTEGER:<TOTAL_BOOT_SIZE>
+numComp=INTEGER:2
 sbl=SEQUENCE:sbl
+sysfw=SEQUENCE:sysfw
 
 [sbl]
 compType = INTEGER:1
@@ -24,3 +25,12 @@ destAddr = FORMAT:HEX,OCT:43c00000
 compSize = INTEGER:<R_BOOT_SIZE>
 shaType  = OID:2.16.840.1.101.3.4.2.3
 shaValue = FORMAT:HEX,OCT:<R_BOOT_HASH>
+
+[sysfw]
+compType = INTEGER:2
+bootCore = INTEGER:0
+compOpts = INTEGER:0
+destAddr = FORMAT:HEX,OCT:00040000
+compSize = INTEGER:<M_BOOT_SIZE>
+shaType  = OID:2.16.840.1.101.3.4.2.3
+shaValue = FORMAT:HEX,OCT:<M_BOOT_HASH>
