@@ -2,22 +2,20 @@
 distinguished_name     = req_distinguished_name
 x509_extensions        = v3_ca
 prompt                 = no
-dirstring_type         = nobmp
 
 [ req_distinguished_name ]
 emailAddress           = anshulusr@gmail.com
 
 [ v3_ca ]
-basicConstraints = CA:true
 1.3.6.1.4.1.294.1.9=ASN1:SEQUENCE:ext_boot_info
 
 [ext_boot_info]
 extImgSize=INTEGER:<TOTAL_BOOT_SIZE>
 numComp=INTEGER:2
-sbl=SEQUENCE:sbl
-sysfw=SEQUENCE:sysfw
+sbl=SEQUENCE:r-boot
+sysfw=SEQUENCE:m-boot
 
-[sbl]
+[r-boot]
 compType = INTEGER:1
 bootCore = INTEGER:16
 compOpts = INTEGER:0
@@ -26,7 +24,7 @@ compSize = INTEGER:<R_BOOT_SIZE>
 shaType  = OID:2.16.840.1.101.3.4.2.3
 shaValue = FORMAT:HEX,OCT:<R_BOOT_HASH>
 
-[sysfw]
+[m-boot]
 compType = INTEGER:2
 bootCore = INTEGER:0
 compOpts = INTEGER:0
